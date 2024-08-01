@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+</ul>
+    <h2><a href="{{ url_for('home') }}"><button>Sınava Geri Dön</button></a></h2>
+
+    <title>Sınav Sonucu</title>
+    <style>
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+        .high-score {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="high-score">En Yüksek Puan: {{ high_score }}</div>
+    <h1>Sınav Sonucu</h1>
+    <p>Toplam Puanınız: {{ score }}</p>
+    <ul>
+        {% for answer in answers.values() %}
+        <li>
+            <p>{{ answer['question']['question'] }}</p>
+            <ul>
+                <li class="{{ 'correct' if answer['question']['answer'] == answer['question']['option1'] else 'incorrect' if answer['user_answer'] == answer['question']['option1'] else '' }}">
+                    {{ answer['question']['option1'] }}
+                    {% if answer['question']['answer'] == answer['question']['option1'] %}
+                        (Doğru Cevap)
+                    {% elif answer['user_answer'] == answer['question']['option1'] %}
+                        (Yanlış Seçilen Cevap)
+                    {% endif %}
+                </li>
+                <li class="{{ 'correct' if answer['question']['answer'] == answer['question']['option2'] else 'incorrect' if answer['user_answer'] == answer['question']['option2'] else '' }}">
+                    {{ answer['question']['option2'] }}
+                    {% if answer['question']['answer'] == answer['question']['option2'] %}
+                        (Doğru Cevap)
+                    {% elif answer['user_answer'] == answer['question']['option2'] %}
+                        (Yanlış Seçilen Cevap)
+                    {% endif %}
+                </li>
+                <li class="{{ 'correct' if answer['question']['answer'] == answer['question']['option3'] else 'incorrect' if answer['user_answer'] == answer['question']['option3'] else '' }}">
+                    {{ answer['question']['option3'] }}
+                    {% if answer['question']['answer'] == answer['question']['option3'] %}
+                        (Doğru Cevap)
+                    {% elif answer['user_answer'] == answer['question']['option3'] %}
+                        (Yanlış Seçilen Cevap)
+                    {% endif %}
+                </li>
+                <li class="{{ 'correct' if answer['question']['answer'] == answer['question']['option4'] else 'incorrect' if answer['user_answer'] == answer['question']['option4'] else '' }}">
+                    {{ answer['question']['option4'] }}
+                    {% if answer['question']['answer'] == answer['question']['option4'] %}
+                        (Doğru Cevap)
+                    {% elif answer['user_answer'] == answer['question']['option4'] %}
+                        (Yanlış Seçilen Cevap)
+                    {% endif %}
+                </li>
+            </ul>
+        </li>
+        {% endfor %}
+
+</body>
+</html>

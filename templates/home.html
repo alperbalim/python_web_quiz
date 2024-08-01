@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Geliştirme Sınavı</title>
+    <style>
+        .high-score {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="high-score">En Yüksek Puan: {{ high_score }}</div>
+    <h1>AI Geliştirme Sınavı</h1>
+    <form action="{{ url_for('submit') }}" method="POST">
+        {% for question in questions %}
+        <div>
+            <p><b>Soru {{ loop.index }}:</b>{{ question.question }}</p>
+            {% set options = question.shuffled_options() %}
+            <input type="radio" name="{{ question.id }}" value="{{ question.option1 }}" required> {{ question.option1 }}<br>
+            <input type="radio" name="{{ question.id }}" value="{{ question.option2 }}" required> {{ question.option2 }}<br>
+            <input type="radio" name="{{ question.id }}" value="{{ question.option3 }}" required> {{ question.option3 }}<br>
+            <input type="radio" name="{{ question.id }}" value="{{ question.option4 }}" required> {{ question.option4 }}<br>
+        </div>
+        {% endfor %}
+        <button type="submit">Gönder</button>
+    </form>
+</body>
+<footer>
+    <p> Mustafa Alper BALIM @2024 <br>
+        İletişim: <a href="mailto:mustafaalperbalim@gmail.com">mustafaalperbalim@gmail.com</a></p>
+</footer>
+</html>
