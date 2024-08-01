@@ -1,36 +1,15 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from flask_sqlalchemy import SQLAlchemy
 import random
 import os
-from dbase import *
+#from dbase import Question
+from dbase import Question, create_db
+from db import db
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///quiz.db'
-db = SQLAlchemy(app)
+db.init_app(app)
 
-class Question(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    question = db.Column(db.String(200), nullable=False)
-    option1 = db.Column(db.String(100), nullable=False)
-    option2 = db.Column(db.String(100), nullable=False)
-    option3 = db.Column(db.String(100), nullable=False)
-    option4 = db.Column(db.String(100), nullable=False)
-    answer = db.Column(db.String(100), nullable=False)
-
-    def to_dict(self):
-        return {
-            'id': self.id,
-            'question': self.question,
-            'option1': self.option1,
-            'option2': self.option2,
-            'option3': self.option3,
-            'option4': self.option4,
-            'answer': self.answer
-        }
-    def shuffled_options(self):
-        options = [self.option1, self.option2, self.option3, self.option4]
-        random.shuffle(options)
-        return options
 
 @app.route('/')
 def home():
@@ -70,6 +49,6 @@ def result():
 
 
 if __name__ == '__main__':
-    if not os.path.exists('quiz.db'):
+    with app.app_context():
         create_db()
     app.run(debug=True)
