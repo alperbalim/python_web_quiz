@@ -1,15 +1,16 @@
-Görünüşe göre dosya indirme işlemi sırasında bir hata oluştu. Alternatif olarak, README içeriğini doğrudan buraya yapıştırıyorum. Bu içeriği kendi metin düzenleyicinizde bir dosya olarak kaydedebilirsiniz.
-
-**README.md**
-```markdown
 # AI Geliştirme Sınavı
 
 ## Table of Contents
-- [Introduction](#introduction)
-- [Installation](#installation)
-- [Usage](#usage)
-- [References](#references)
-- [Roadmap](#roadmap)
+- [AI Geliştirme Sınavı](#ai-geliştirme-sınavı)
+  - [Table of Contents](#table-of-contents)
+  - [Introduction](#introduction)
+  - [Installation](#installation)
+    - [System/Dependencies](#systemdependencies)
+    - [Kurulum Adımları](#kurulum-adımları)
+  - [Usage](#usage)
+    - [Uygulamanın Başlatılması](#uygulamanın-başlatılması)
+  - [References](#references)
+  - [Roadmap](#roadmap)
 
 ## Introduction
 
